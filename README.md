@@ -133,10 +133,10 @@ Base da rota:
 /gerar-ia
 
 Método	Endpoint	Descrição
-POST	/plano/:unidadeId	Gera plano de aula
-POST	/atividade/:unidadeId	Gera atividades
-POST	/slides/:unidadeId	Gera slides
-POST	/sugestao/:unidadeId	Gera sugestões pedagógicas
+- POST	/plano/:unidadeId	Gera plano de aula
+- POST	/atividade/:unidadeId	Gera atividades
+- POST	/slides/:unidadeId	Gera slides
+- POST	/sugestao/:unidadeId	Gera sugestões pedagógicas
 
 ---
 
@@ -185,16 +185,16 @@ PORT=3000
 ## ⚠️ Nunca versionar o arquivo .env.
 
 ## 📦 Scripts
-npm run dev     # Executa em desenvolvimento
-npm run build   # Compila o projeto
-npm start       # Executa o build
+- npm run dev     # Executa em desenvolvimento
+- npm run build   # Compila o projeto
+- npm start       # Executa o build
 
 ---
 
 ## 🚀 Executando a API banco de dados
-npm install
-npx prisma generate
-npx prisma migrate dev
+- npm install
+- npx prisma generate
+- npx prisma migrate dev
 
 
 Servidor disponível em:
