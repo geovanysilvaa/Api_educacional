@@ -1,0 +1,146 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  name      String
+  email     String     @unique
+  password  String
+  createdAt DateTime   @default(now()) @db.Timestamptz
+  role      UserRole   @default(PROFESSOR)
+  materials Material[]
+}
+
+model BNCC {
+  id        Int        @id @default(autoincrement())
+  code      String     @unique
+  description String
+  stage     Stage
+  createdAt DateTime   @default(now()) @db.Timestamptz
+  materials MaterialBNCC[]
+}
+
+model MaterialBNCC {
+  id         Int      @id @default(autoincrement())
+  materialId Int
+  bnccId     Int
+  createdAt  DateTime @default(now()) @db.Timestamptz
+  bncc       BNCC     @relation(fields: [bnccId], references: [id])
+  material   Material @relation(fields: [materialId], references: [id])
+
+  @@unique([materialId, bnccId])
+}
+
+model Tag {
+  id        Int           @id @default(autoincrement())
+  name      String        @unique
+  createdAt DateTime      @default(now()) @db.Timestamptz
+  materials MaterialTag[]
+}
+
+model MaterialTag {
+  id         Int      @id @default(autoincrement())
+  materialId Int
+  tagId      Int
+  createdAt  DateTime @default(now()) @db.Timestamptz
+  material   Material @relation(fields: [materialId], references: [id])
+  tag        Tag      @relation(fields: [tagId], references: [id])
+
+  @@unique([materialId, tagId])
+}
+
+model Material {
+  id          Int            @id @default(autoincrement())
+  title       String
+  description String?
+  type        String
+  gradeLevel  String
+  createdAt   DateTime       @default(now()) @db.Timestamptz
+  userId      Int
+  user        User           @relation(fields: [userId], references: [id])
+  bnccRefs    MaterialBNCC[]
+  tags        MaterialTag[]
+}
+
+model Disciplina {
+  id         Int       @id @default(autoincrement())
+  nome       String
+  descricao  String?
+  seriesAnos String[]
+  createdAt  DateTime  @default(now()) @db.Timestamptz
+  unidades   Unidade[]
+}
+
+model Unidade {
+  id           Int            @id @default(autoincrement())
+  disciplinaId Int
+  tema         String
+  descricao    String?
+  serieAno     String
+  duracao      Int
+  objetivos    String?
+  createdAt    DateTime       @default(now()) @db.Timestamptz
+  atividades   Atividade[]
+  logsIA       LogGeracaoIA[]
+  planoAula    PlanoAula?
+  disciplina   Disciplina     @relation(fields: [disciplinaId], references: [id])
+}
+
+model PlanoAula {
+  id               Int      @id @default(autoincrement())
+  unidadeId        Int      @unique
+  textoPlano       String
+  bnccCompetencias Json
+  fontes           String[]
+  createdAt        DateTime @default(now()) @db.Timestamptz
+  unidade          Unidade  @relation(fields: [unidadeId], references: [id])
+}
+
+model Atividade {
+  id                Int           @id @default(autoincrement())
+  unidadeId         Int
+  enunciado         String
+  criteriosCorrecao String
+  tipo              TipoAtividade
+  createdAt         DateTime      @default(now()) @db.Timestamptz
+  unidade           Unidade       @relation(fields: [unidadeId], references: [id])
+}
+
+model LogGeracaoIA {
+  id                    Int           @id @default(autoincrement())
+  unidadeId             Int
+  tipoGeracao           TipoGeracaoIA
+  promptUsado           String
+  respostaBruta         String
+  evidenciasRecuperadas String[]
+  createdAt             DateTime      @default(now()) @db.Timestamptz
+  unidade               Unidade       @relation(fields: [unidadeId], references: [id])
+}
+
+enum Stage {
+  FUNDAMENTAL
+  MEDIO
+}
+
+enum UserRole {
+  PROFESSOR
+}
+
+enum TipoAtividade {
+  PROVA
+  TRABALHO
+  ATIVIDADE
+}
+
+enum TipoGeracaoIA {
+  PLANO
+  ATIVIDADE
+  SLIDES
+  SUGESTAO
+}

@@ -1,0 +1,1567 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Docents
+meta:
+  id: wrk_f162584f91bf4d599b8af7c8208a2af8
+  created: 1768650634037
+  modified: 1768650634037
+  description: ""
+collection:
+  - name: Usuarios
+    meta:
+      id: fld_31d292c584d34392b2693a31d72e9cce
+      created: 1768948228192
+      modified: 1768948228192
+      sortKey: -1768948228192
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/users/create"
+        name: Create Users
+        meta:
+          id: req_727b7b5b83f9417dbd2e860a433b80c2
+          created: 1768650644442
+          modified: 1769005197355
+          isPrivate: false
+          description: ""
+          sortKey: -1768948238742
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Geovany",
+              "email": "geovany@email.com",
+              "password": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/users"
+        name: List Users
+        meta:
+          id: req_d6ac595701da43bfa26b18bc31eb8d51
+          created: 1768684069938
+          modified: 1768948293089
+          isPrivate: false
+          description: ""
+          sortKey: -1768948238842
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/users/4"
+        name: List Users [ID]
+        meta:
+          id: req_a23daf6034b54da4902538187aa1f6f7
+          created: 1768684334762
+          modified: 1769031921480
+          isPrivate: false
+          description: ""
+          sortKey: -1768948238642
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/users/2"
+        name: Delete Users [ID]
+        meta:
+          id: req_d7beca2edac84beaa989ef5e86b4349f
+          created: 1768685192732
+          modified: 1768948278448
+          isPrivate: false
+          description: ""
+          sortKey: -1768948238542
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/users/2"
+        name: Update Users [ID]
+        meta:
+          id: req_6771c5aa166247e783a10ee291ed8519
+          created: 1768685839741
+          modified: 1768948238370
+          isPrivate: false
+          description: ""
+          sortKey: -1768948238342
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+            	"email":"gabriel@exemplo.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/users/login"
+        name: Login Users
+        meta:
+          id: req_66b61aa0a4ed4e379a88b2a9e92b3b0f
+          created: 1768920607921
+          modified: 1769005212588
+          isPrivate: false
+          description: ""
+          sortKey: -1768948238442
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "geovany@email.com",
+              "password": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Criar material
+    meta:
+      id: fld_e846a48f371c461bb9fb9c123fb67d20
+      created: 1768948314914
+      modified: 1768948314914
+      sortKey: -1768948314915
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/materials"
+        name: Criar material
+        meta:
+          id: req_fd98ac28820c4247bd224a3b46294298
+          created: 1768948322604
+          modified: 1769295802987
+          isPrivate: false
+          description: ""
+          sortKey: -1768948433676
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "title": "Funções Matemáticas",
+              "description": "Explicação de funções",
+              "type": "ATIVIDADE",
+              "gradeLevel": "6° ano",
+              "userId": 3,
+              "tagIds": [2,3],
+              "bnccIds": [2]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/materials?userId=5&bccId=2&tagId=2&gradeLevel=6° ano"
+        name: Listar materiais (opcional filtro)
+        meta:
+          id: req_ce3f25a5067b44d68f9a8a9c46a37d41
+          created: 1768958956525
+          modified: 1769174514630
+          isPrivate: false
+          description: ""
+          sortKey: -1768953695100.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/materials/9"
+        name: Buscar por ID
+        meta:
+          id: req_c011ee39417d45988f613028a4b17afe
+          created: 1768959865713
+          modified: 1769295819695
+          isPrivate: false
+          description: ""
+          sortKey: -1768959865713
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/materials/1"
+        name: Atualizar material
+        meta:
+          id: req_b3af2b36b82a487fa1ecdcc699cfa6bb
+          created: 1768960642062
+          modified: 1768960714779
+          isPrivate: false
+          description: ""
+          sortKey: -1768960642062
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "title": "Funções e Equações"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/materials/3"
+        name: Deletar material
+        meta:
+          id: req_9ace887584304652b307832a30a9f922
+          created: 1768960750841
+          modified: 1769476427630
+          isPrivate: false
+          description: ""
+          sortKey: -1768960750841
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Tags
+    meta:
+      id: fld_18755ffefb59413c9bf24d6b15272ad9
+      created: 1768948551307
+      modified: 1768948569595
+      sortKey: -1768948551308
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/tags"
+        name: Criar uma Tag
+        meta:
+          id: req_36867f36a7994d22af0d58c200367c8c
+          created: 1768948557924
+          modified: 1769515371831
+          isPrivate: false
+          description: ""
+          sortKey: -1768948557924
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Téste"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/tags"
+        name: Listar todas as Tags
+        meta:
+          id: req_e7c3dc1f70da4a5eb158ae1fd895728c
+          created: 1768948649945
+          modified: 1768948831194
+          isPrivate: false
+          description: ""
+          sortKey: -1768948649945
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/tags/2"
+        name: Buscar por ID
+        meta:
+          id: req_69f7ec32898047e9b2db67c5c1072a0e
+          created: 1768948702791
+          modified: 1768954575969
+          isPrivate: false
+          description: ""
+          sortKey: -1768948702791
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/tags/2"
+        name: Atualizar Tag
+        meta:
+          id: req_60e3e4ce62484936ab6d41c79a71dbb4
+          created: 1768948751091
+          modified: 1768948825532
+          isPrivate: false
+          description: ""
+          sortKey: -1768948702891
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Física"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/tags/2"
+        name: Delete Tag
+        meta:
+          id: req_001092766a864f9794e9f4b3933a1631
+          created: 1768948841718
+          modified: 1769476570275
+          isPrivate: false
+          description: ""
+          sortKey: -1768948841718
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Criar BNCC
+    meta:
+      id: fld_71bd8d1686fd429db8a80302fd6bd37f
+      created: 1768949850415
+      modified: 1768949850415
+      sortKey: -1768949850415
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/bncc"
+        name: Criar BNCC
+        meta:
+          id: req_795c19003ae448ae9f7614e53f600d89
+          created: 1768949854448
+          modified: 1768949922791
+          isPrivate: false
+          description: ""
+          sortKey: -1768949854448
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "code": "BNCC123",
+              "description": "Competência lógica",
+              "stage": "FUNDAMENTAL"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/bncc"
+        name: Listar BNCCs
+        meta:
+          id: req_1001e8f4712b4d81a687e5d7ce3f17ec
+          created: 1768950366575
+          modified: 1768950414312
+          isPrivate: false
+          description: ""
+          sortKey: -1768950366575
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/bncc/1"
+        name: Obter BNCC por ID
+        meta:
+          id: req_1574ac8de35e4b308bcb065b319a4a0e
+          created: 1768950438105
+          modified: 1768950565581
+          isPrivate: false
+          description: ""
+          sortKey: -1768950438105
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/bncc/1"
+        name: Atualizar BNCC
+        meta:
+          id: req_c3bd7a34babb48e88aaacd924bea958b
+          created: 1768950489901
+          modified: 1768950606228
+          isPrivate: false
+          description: ""
+          sortKey: -1768950489901
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "description": "Competência lógica e raciocínio"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/bncc/2"
+        name: Deletar BNCC
+        meta:
+          id: req_e392772594fe45dbb90df65336fc33f3
+          created: 1768950660662
+          modified: 1769475237084
+          isPrivate: false
+          description: ""
+          sortKey: -1768950490001
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: " Disciplina"
+    meta:
+      id: fld_d4ccc344800c4db980b2744ab2f3f573
+      created: 1768989795492
+      modified: 1768989795492
+      sortKey: -1768989795492
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/disciplinas"
+        name: Criar disciplina
+        meta:
+          id: req_7d6ea16783304f129ed0936e22c93211
+          created: 1768989809335
+          modified: 1768989917309
+          isPrivate: false
+          description: ""
+          sortKey: -1768989809335
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "nome": "Matemática",
+              "descricao": "Disciplina de Matemática",
+              "seriesAnos": ["6º ano", "7º ano"]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/disciplinas"
+        name: Listar disciplinas
+        meta:
+          id: req_c1bd4c5319f34649ad396a56df291fe3
+          created: 1768989938840
+          modified: 1768989966822
+          isPrivate: false
+          description: ""
+          sortKey: -1768989938840
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/disciplinas/1"
+        name: Obter disciplina por ID
+        meta:
+          id: req_6a6b0c761edd41789fefc3b4e8406db9
+          created: 1768989982484
+          modified: 1768990014900
+          isPrivate: false
+          description: ""
+          sortKey: -1768989982484
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/disciplinas/1"
+        name: Atualizar disciplina
+        meta:
+          id: req_dfd2acd5a28f4033a30aadfa20eca1d5
+          created: 1768990027139
+          modified: 1768990122840
+          isPrivate: false
+          description: ""
+          sortKey: -1768990027139
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |+
+            {
+            	"nome": "Matemática Avançada"
+            }
+
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/disciplinas/1"
+        name: Deletar disciplina
+        meta:
+          id: req_6b3a1dafd3c045e082e2be8940494dc2
+          created: 1768990137079
+          modified: 1769268398167
+          isPrivate: false
+          description: ""
+          sortKey: -1768990137079
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: " Unidade"
+    meta:
+      id: fld_a371b4c2162e49a58cc8075caa3acd6d
+      created: 1768990209438
+      modified: 1768990209438
+      sortKey: -1768990209438
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/unidades"
+        name: Criar unidade
+        meta:
+          id: req_d5757e3feffe4f51aa02c5d8b86a5520
+          created: 1768990271567
+          modified: 1769736347179
+          isPrivate: false
+          description: ""
+          sortKey: -1768990271567
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "disciplinaId": 99,
+              "tema": "Funções",
+              "descricao": "Introdução às funções",
+              "serieAno": "6º ano",
+              "duracao": 4,
+              "objetivos": "Entender funções"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/unidades/disciplina/2"
+        name: Listar unidades por disciplina
+        meta:
+          id: req_6c89d2e4a43f4a6dab6597c6afed8bd6
+          created: 1768991128248
+          modified: 1768991789619
+          isPrivate: false
+          description: ""
+          sortKey: -1768991128248
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/unidades/5"
+        name: Buscar unidade por ID
+        meta:
+          id: req_ebb7c273bbf440c39b760ed4f1875114
+          created: 1768991793659
+          modified: 1769260431206
+          isPrivate: false
+          description: ""
+          sortKey: -1768991793659
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/unidades/1"
+        name: Atualizar unidade
+        meta:
+          id: req_2271f503a22a4ed3ac046580f4675ff2
+          created: 1768992026592
+          modified: 1768994243524
+          isPrivate: false
+          description: ""
+          sortKey: -1768992026592
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "tema": "Funções Matemáticas"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/unidades"
+        name: Listar unidades
+        meta:
+          id: req_2f26fd45edd1435092e9beff7bd2fa39
+          created: 1768993498667
+          modified: 1768993610620
+          isPrivate: false
+          description: ""
+          sortKey: -1768993498667
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/unidades/"
+        name: Deletar unidade
+        meta:
+          id: req_6abde16d1bcc45e89acb5fd724124676
+          created: 1768994419785
+          modified: 1768994641925
+          isPrivate: false
+          description: ""
+          sortKey: -1768994419785
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Plano de Aula
+    meta:
+      id: fld_c3e0b8292c4f42868a8693d33b8f9c00
+      created: 1768994664804
+      modified: 1769271244091
+      sortKey: -1768994664804
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/planos"
+        name: Criar plano
+        meta:
+          id: req_b7ca5ee09d954dfe9288dc88c4d34713
+          created: 1768994669574
+          modified: 1769729176393
+          isPrivate: false
+          description: ""
+          sortKey: -1768994669574
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "unidadeId": 5,
+              "textoPlano": "Plano detalhado",
+              "bnccCompetencias": [
+                { "codigo": "BNCC123", "descricao": "Competência lógica" }
+              ],
+              "fontes": ["Livro didático"]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/planos/unidade/5"
+        name: "  Listar planos por unidade"
+        meta:
+          id: req_6438913da46f49179e930e1089173dca
+          created: 1768994947058
+          modified: 1769732077109
+          isPrivate: false
+          description: ""
+          sortKey: -1768995107690.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/planos/11"
+        name: "  Obter plano por ID"
+        meta:
+          id: req_fab657a372344af6bbb1bfcb57ec0e8c
+          created: 1768995268323
+          modified: 1769119144916
+          isPrivate: false
+          description: ""
+          sortKey: -1768995268323
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/planos/1"
+        name: Atualizar plano
+        meta:
+          id: req_58e9ab84f773470d9740cc17cad683de
+          created: 1768995355937
+          modified: 1768995484161
+          isPrivate: false
+          description: ""
+          sortKey: -1768995355937
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |+
+            {
+              "textoplano": "Atualização do plano"
+            }
+
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/planos/11"
+        name: Deletar plano
+        meta:
+          id: req_775f6472750044cea04e89b4917bccc1
+          created: 1768995518533
+          modified: 1769271278861
+          isPrivate: false
+          description: ""
+          sortKey: -1768995356037
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/planos"
+        name: Listar todos
+        meta:
+          id: req_db537f3e5ece4060a8a018aff77ff1cb
+          created: 1769271247852
+          modified: 1769271299845
+          isPrivate: false
+          description: ""
+          sortKey: -1769271247852
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: " Atividade"
+    meta:
+      id: fld_5543b334322745bfacc7d1fc3fe9a0d0
+      created: 1768995645666
+      modified: 1768995645666
+      sortKey: -1768995645666
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/atividades"
+        name: Criar atividade
+        meta:
+          id: req_a728e4adb6c54106a8c90b83d5301b12
+          created: 1768995650238
+          modified: 1769558466028
+          isPrivate: false
+          description: ""
+          sortKey: -1768995650238
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "unidadeId": 2,
+              "enunciado": "Resolva as funções",
+              "criteriosCorrecao": "Resultado correto",
+              "tipo": "ATIVIDADE"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/atividades/5"
+        name: Listar atividades por ID
+        meta:
+          id: req_1b30199185924884b6d0f7feccd3af1a
+          created: 1768995953841
+          modified: 1769120420788
+          isPrivate: false
+          description: ""
+          sortKey: -1768995953841
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/atividades/2"
+        name: Atualizar atividade
+        meta:
+          id: req_c392790be13d4b2cabae6297a1e36839
+          created: 1768996096074
+          modified: 1768996268763
+          isPrivate: false
+          description: ""
+          sortKey: -1768996096074
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "enunciado": "Exercício atualizado"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/atividades/4"
+        name: Deletar atividade
+        meta:
+          id: req_ce66e2b3af974f0bac486ad477013f7e
+          created: 1768996279684
+          modified: 1769266859230
+          isPrivate: false
+          description: ""
+          sortKey: -1768996279684
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/atividades/unidade/5"
+        name: Listar atividade por unidade
+        meta:
+          id: req_72ee49ae2937434c81e1a70dfd63ba92
+          created: 1769124587377
+          modified: 1769697255357
+          isPrivate: false
+          description: ""
+          sortKey: -1769124587377
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/atividades"
+        name: Listar todas as atividade
+        meta:
+          id: req_51085bcb151746f681413bafbcfcdb85
+          created: 1769558388792
+          modified: 1769560094526
+          isPrivate: false
+          description: ""
+          sortKey: -1769558388792
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: " Log de Geração IA"
+    meta:
+      id: fld_b8667afd13f546338e253b7e836ade76
+      created: 1768996360197
+      modified: 1768996360197
+      sortKey: -1768996360197
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/logs-ia"
+        name: Criar log
+        meta:
+          id: req_e518d807226e49999fcbdfb60d1e399f
+          created: 1768996385248
+          modified: 1769267736784
+          isPrivate: false
+          description: ""
+          sortKey: -1768996385248
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "unidadeId": 1,
+              "tipoGeracao": "PLANO",
+              "promptUsado": "Gerar plano",
+              "respostaBruta": "Texto gerado",
+              "evidenciasRecuperadas": ["BNCC123"]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/logs-ia/3"
+        name: Listar logs
+        meta:
+          id: req_f145d3d3ab534094a619719082364542
+          created: 1768996627842
+          modified: 1769697981426
+          isPrivate: false
+          description: ""
+          sortKey: -1768996627842
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/logs-ia/unidade/3"
+        name: Listar logs por unidade
+        meta:
+          id: req_ca3098b4f208493684ef845b068df734
+          created: 1768996735157
+          modified: 1769697990698
+          isPrivate: false
+          description: ""
+          sortKey: -1768996735157
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Criar vinculo BNCC
+    meta:
+      id: fld_115f2e9bcb3c4a6dbf5b3f0123592cfb
+      created: 1769124862722
+      modified: 1769269936566
+      sortKey: -1769124862747
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/material-bncc"
+        name: Criar vinculo BNCC e Material
+        meta:
+          id: req_b257a8ee0c824089940377b9a6261785
+          created: 1769124905883
+          modified: 1769269281210
+          isPrivate: false
+          description: ""
+          sortKey: -1769124905883
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "materialId": 4,
+              "bnccId": 2
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/material-bncc/by-material/4"
+        name: " Lista todas associações  material "
+        meta:
+          id: req_138ff05fc2fd4b3486c3471a47108158
+          created: 1769125185776
+          modified: 1769273103501
+          isPrivate: false
+          description: ""
+          sortKey: -1769125185776
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/material-bncc/by-bncc/2"
+        name: Lista todas associações  BNCC
+        meta:
+          id: req_1e074d4cf423484093d873d6f26b457d
+          created: 1769125245198
+          modified: 1769269886386
+          isPrivate: false
+          description: ""
+          sortKey: -1769125245198
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/material-bncc/0"
+        name: Delete vinculo
+        meta:
+          id: req_41e3ab2f45d9449eb41b1370f66036b5
+          created: 1769174185890
+          modified: 1769269819048
+          isPrivate: false
+          description: ""
+          sortKey: -1769174185890
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: IA
+    meta:
+      id: fld_40a5e017a46e4ad0ba49ce6fbd797f22
+      created: 1769638750473
+      modified: 1769638750473
+      sortKey: -1769638750473
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/gerar-ia/atividade/3"
+        name: Gerar atividade
+        meta:
+          id: req_90b4e07c46cd4d9d83b738df506f3690
+          created: 1769638898783
+          modified: 1769697813724
+          isPrivate: false
+          description: ""
+          sortKey: -1769638898783
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/gerar-ia/plano/5"
+        name: Gerar plano
+        meta:
+          id: req_1877cf0da61a4522af976b3d1c341035
+          created: 1769647499481
+          modified: 1769649031920
+          isPrivate: false
+          description: ""
+          sortKey: -1769647499481
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/gerar-ia/slides/5"
+        name: Gerar slide
+        meta:
+          id: req_dcdaf49f7745470a9ef500e21e10aabe
+          created: 1769650163742
+          modified: 1769696665506
+          isPrivate: false
+          description: ""
+          sortKey: -1769650163742
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/gerar-ia/sugestao/5"
+        name: Gerar sugestões
+        meta:
+          id: req_8093c1973b384455815770de08b1f40c
+          created: 1769696324746
+          modified: 1769696405399
+          isPrivate: false
+          description: ""
+          sortKey: -1769696324746
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_28e871a77d56cfcd9965e3cfb775b7b73293ea2a
+    created: 1768650634074
+    modified: 1768650634074
+environments:
+  name: Base Environment
+  meta:
+    id: env_28e871a77d56cfcd9965e3cfb775b7b73293ea2a
+    created: 1768650634049
+    modified: 1768684034456
+    isPrivate: false
+  data:
+    baseUrl: " http://localhost:3000"
