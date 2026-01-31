@@ -1,0 +1,721 @@
+@startuml API
+!define LIGHTBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+'================================================
+' API Educacional - Backend UML Completo
+'================================================
+
+
+'========================
+' CAMADA DE MODELS / DTOs
+'========================
+package "core"{
+package "Models / DTOs"  {
+
+
+  package "Usuarios"{
+    ' Usuários
+
+
+    enum UserRole {
+      PROFESSOR
+    }
+
+
+    interface CreateUserDTO{
+      name: string;
+      email: string;
+      password: string;
+      role?: UserRole;
+    }
+    interface UpdateUserDTO{
+      name?: string;
+      email?: string;
+      password?: string;
+    }
+    interface LoginUserDTO{
+      email: string;
+      password: string;
+    }
+    interface UserResponseDTO{
+      id: number;
+      name: string;
+      email: string;
+      role?: UserRole;
+      createdAt: Date;
+    }
+    interface UserWithPassword{
+      id: number;
+      name: string;
+      email: string;
+      password: string;
+      role: UserRole;
+      createdAt: Date;
+    }
+  }
+
+
+  package "Unidades"{
+    ' Unidades
+    interface CreateUnidadeDTO{
+      disciplinaId: number;
+      tema: string;
+      descricao?: string;
+      serieAno: string;
+      duracao: number;
+      objetivos?: string;
+    }
+    interface UpdateUnidadeDTO{
+      tema?: string;
+      descricao?: string;
+      serieAno?: string;
+      duracao?: number;
+      objetivos?: string;
+    }
+    interface UnidadeDTO{
+      id: number;
+      disciplinaId: number;
+      tema: string;
+      descricao?: string | null;
+      serieAno: string;
+      duracao: number;
+      objetivos?: string | null;
+      createdAt: Date;
+    }
+    interface UnidadeResponseDTO {
+      planoAula?: PlanoAulaDTO;
+      atividades?: AtividadeDTO[];
+    }
+  }
+  package "Tags"{
+    ' Tags
+    interface CreateTagDTO{
+      name: string;
+    }
+    interface UpdateTagDTO{
+      name?: string;
+    }
+    interface TagDTO{
+      id: number;
+      name: string;
+      createdAt: Date;
+    }
+  }
+  package "Plano de aula"{
+    ' Plano de Aula
+    interface CreatePlanoAulaDTO{
+      unidadeId:number;
+      textoPlano:string;
+      bnccCompetencias?: { codigo: string; descricao: string }[];
+      fontes: string[];
+    }
+    interface UpdatePlanoAulaDTO{
+      textoPlano?: string;
+      bnccCompetencias?: { codigo: string; descricao: string }[];
+      fontes?: string[];
+    }
+    interface PlanoAulaDTO{
+      id: number;
+      unidadeId: number;
+      textoPlano: string;
+      bnccCompetencias: { codigo: string; descricao: string }[];
+      fontes: string[];
+      createdAt: Date;
+    }
+  }
+  package "Materiais"{
+    ' Materiais
+    interface CreateMaterialDTO{
+      title: string;
+      description?: string;
+      type: string;
+      gradeLevel: string;
+      userId: number;
+      tagIds?: number[];
+      bnccIds?: number[];
+    }
+    interface UpdateMaterialDTO{
+      title?: string;
+      description?: string;
+      type?: string;
+      gradeLevel?: string;
+      tagIds?: number[];
+      bnccIds?: number[];
+    }
+    interface MaterialResponseDTO{
+      id: number;
+      title: string;
+      description?: string | null;
+      type: string;
+      gradeLevel: string;
+      createdAt: Date;
+      userId: number;
+      tags: TagDTO[];
+      bnccRefs: MaterialBNCCDTO[];
+    }
+    interface MaterialBNCCDTO{
+      id: number;
+      materialId: number;
+      bnccId: number;
+      createdAt: Date;
+    }
+    interface MaterialFilterDTO{
+      tagId?: number;
+      bnccId?: number;
+      userId?: number;
+      gradeLevel?: string;
+    }
+  }
+  package "Materiaos x BNCC"{
+    ' Materiais x BNCC
+    interface CreateMaterialBNCCDTO{
+      materialId: number;
+      bnccId: number;
+    }
+    interface MaterialBNCCResponseDTO{
+      id: number;
+      materialId: number;
+      bnccId: number;
+      createdAt: Date;
+      material?: MaterialResponseDTO;
+      bncc?: BNCCDTO;
+    }
+  }
+  package "Logs de geração IA"{
+    ' Logs de geração IA
+    interface LogGeracaoIADTO{
+      id: number;
+      unidadeId: number;
+      tipoGeracao: "PLANO" | "ATIVIDADE" | "SLIDES" | "SUGESTAO";
+      promptUsado: string;
+      respostaBruta: string;
+      evidenciasRecuperadas: string[];
+      createdAt: Date;
+    }
+    interface CreateLogGeracaoIADTO{
+      unidadeId: number;
+      tipoGeracao: "PLANO" | "ATIVIDADE" | "SLIDES" | "SUGESTAO";
+      promptUsado: string;
+      respostaBruta: string;
+      evidenciasRecuperadas?: string[];
+    }
+    interface UnidadeIAContextDTO{
+      disciplina: string
+      serieAno: string
+      tema: string
+      duracao: number
+    }
+  }
+  
+  package "Disciplina"{
+    ' Disciplinas
+    interface CreateDisciplinaDTO{
+      nome: string;
+      descricao?: string;
+      seriesAnos: string[];
+    }
+    interface UpdateDisciplinaDTO{
+       nome?: string;
+       descricao?: string;
+       seriesAnos?: string[];
+    }
+    interface DisciplinaDTO{
+      id: number;
+      nome: string;
+      descricao: string | null;
+      seriesAnos: string[];
+      createdAt: Date;
+    }
+  }
+  package "BNCC"{
+    ' BNCC
+    interface CreateBNCCDTO{
+      code: string;
+      description: string;
+      stage: Stage;
+    }
+    interface UpdateBNCCDTO{
+      code?: string;
+      description?: string;
+      stage?: Stage;
+    }
+    interface BNCCDTO{
+      id: number;
+      code: string;
+      description: string;
+      stage: Stage;
+      createdAt: Date;
+    }
+     enum Stage {
+      FUNDAMENTAL | MEDIO
+    }
+  }
+  package "Atividade"{
+    ' Atividades
+    interface CreateAtividadeDTO{
+      unidadeId: number;
+      enunciado: string;
+      criteriosCorrecao: string;
+      tipo: TipoAtividade;
+    }
+    interface UpdateAtividadeDTO{
+      enunciado?: string;
+      criteriosCorrecao?: string;
+      tipo?: TipoAtividade;
+    }
+    interface AtividadeDTO{
+      id: number;
+      unidadeId: number;
+      enunciado: string;
+      criteriosCorrecao: string;
+      tipo: TipoAtividade;
+      createdAt: Date;
+    }
+  }
+}
+
+'========================
+' CAMADA DE REPOSITORIES
+'========================
+package "Repositories" {
+
+
+  class UserRepository
+  class UnidadeRepository
+  class TagRepository
+  class PlanoAulaRepository
+  class MaterialRepository
+  class MaterialBNCCRepository
+  class LogGeracaoIARepository
+  class DisciplinaRepository
+  class BNCCRepository
+  class AtividadeRepository
+
+
+  ' Representa o banco de dados
+  class PrismaClient
+}
+
+'========================
+' CAMADA DE CONTROLLERS
+'========================
+package "Controllers"{
+
+  class UserController
+  class UnidadeController
+  class TagController
+  class PlanoAulaController
+  class MaterialController
+  class MaterialBNCCController
+  class LogGeracaoIAController
+  class DisciplinaController
+  class BNCCController
+  class AtividadeController
+}
+
+
+'========================
+' CAMADA DE SERVICES
+'========================
+package "Services" {
+
+
+  class UserService
+  class UnidadeService
+  class TagService
+  class PlanoAulaService
+  class MaterialService
+  class MaterialBNCCService
+  class LogGeracaoIAService
+  class DisciplinaService
+  class BNCCService
+  class AtividadeService
+}
+
+'========================
+' CAMADA DE INTERFACES
+'========================
+package "Interfaces" {
+
+
+  interface IUserService{
+    login(data: LoginUserDTO): Promise<UserResponseDTO>;
+    createUser(data: CreateUserDTO): Promise<UserResponseDTO>;
+    updateUser(id: number, data: UpdateUserDTO):Promise<UserResponseDTO>;
+    getUserById(id: number): Promise<UserResponseDTO>;
+    getAllUsers(): Promise<UserResponseDTO[]>;
+    deleteUser(id: number): Promise<void>;
+  }
+  interface IUserRepository{
+    create(data: CreateUserDTO): Promise<UserWithPassword>;
+    findById(id: number): Promise<UserWithPassword | null>;
+    findByEmail(email: string): Promise<UserWithPassword | null>;
+    findAll(): Promise<UserWithPassword[]>;
+    update(id: number, data: UpdateUserDTO): Promise<UserWithPassword>;
+    delete(id: number): Promise<void>;
+  }
+  interface IUnidadeService{
+    createUnidade(data: CreateUnidadeDTO): Promise<UnidadeDTO>;
+    getUnidadeById(id: number): Promise<UnidadeDTO>;
+    getAllUnidades(): Promise<UnidadeDTO[]>;
+    getAllUnidadesByDisciplina(disciplinaId: number): Promise<UnidadeDTO[]>;
+    deleteUnidade(id: number): Promise<void>;
+  }
+  interface IUnidadeRepository{
+    create(data: CreateUnidadeDTO): Promise<UnidadeDTO>;
+    findById(id: number): Promise<UnidadeDTO | null>;
+    findAll(): Promise<UnidadeDTO[]>;
+    findAllByDisciplina(disciplinaId: number): Promise<UnidadeDTO[]>;
+    update(id: number, data: UpdateUnidadeDTO): Promise<UnidadeDTO>;
+    delete(id: number): Promise<void>;
+  }
+  interface ITagService{
+    createTag(data: CreateTagDTO): Promise<TagDTO>;
+    updateTag(id: number, data: UpdateTagDTO): Promise<TagDTO>;
+    getTagById(id: number): Promise<TagDTO>;
+    getAllTags(): Promise<TagDTO[]>;
+    deleteTag(id: number): Promise<void>;
+  }
+  interface ITagRepository{
+    create(data: CreateTagDTO): Promise<TagDTO>;
+    findById(id: number): Promise<TagDTO | null>;
+    findByName(name: string): Promise<TagDTO | null>;
+    findAll(): Promise<TagDTO[]>;
+    update(id: number, data: UpdateTagDTO): Promise<TagDTO>;
+    delete(id: number): Promise<void>;
+  }
+  interface IPlanoAulaService{
+    createPlanoAula(data: CreatePlanoAulaDTO): Promise<PlanoAulaDTO>;
+    getPlanoAulaById(id: number): Promise<PlanoAulaDTO>;
+    getAllPlanosByUnidade(unidadeId: number): Promise<PlanoAulaDTO[]>;
+    getAllPlano(): Promise<PlanoAulaDTO[]>;
+    updatePlanoAula(id: number, data: UpdatePlanoAulaDTO): Promise<PlanoAulaDTO>;
+    deletePlanoAula(id: number): Promise<void>;
+  }
+  interface IPlanoAulaRepository{
+    create(data:CreatePlanoAulaDTO):Promise<PlanoAulaDTO>;
+    findById(id: number): Promise<PlanoAulaDTO | null>;
+    getAllPlano(): Promise<PlanoAulaDTO[]>;
+    findAllByUnidade(unidadeId: number): Promise<PlanoAulaDTO[]>;
+    update(id: number, data: UpdatePlanoAulaDTO): Promise<PlanoAulaDTO>;
+    delete(id: number): Promise<void>;
+  }
+  interface IMaterialService{
+    createMaterial(data: CreateMaterialDTO): Promise<MaterialResponseDTO>;
+    updateMaterial(id: number, data: UpdateMaterialDTO): Promise<MaterialResponseDTO>;
+    getMaterialById(id: number): Promise<MaterialResponseDTO | null>;
+    getAllMaterials(filter?: MaterialFilterDTO): Promise<MaterialResponseDTO[]>;
+    deleteMaterial(id: number): Promise<void>;
+  }
+  interface IMaterialRepository{
+    create(data: CreateMaterialDTO): Promise<MaterialResponseDTO>;
+    findById(id: number): Promise<MaterialResponseDTO | null>;
+    findAll(filter?: MaterialFilterDTO): Promise<MaterialResponseDTO[]>;
+    update(id: number, data: UpdateMaterialDTO): Promise<MaterialResponseDTO>;
+    findByUserId(userId: number): Promise<MaterialResponseDTO[]>;
+    delete(id: number): Promise<void>;
+  }
+  interface IMaterialBNCCService{
+    createMaterialBNCC(data: CreateMaterialBNCCDTO): Promise<MaterialBNCCResponseDTO>;
+    deleteMaterialBNCC(id: number): Promise<void>;
+    deleteByMaterialAndBNCC(materialId: number, bnccId: number): Promise<void>;
+    getById(id: number): Promise<MaterialBNCCResponseDTO | null>;
+    getAllByMaterial(materialId: number): Promise<MaterialBNCCResponseDTO[]>;
+    getAllByBNCC(bnccId: number): Promise<MaterialBNCCResponseDTO[]>;
+  }
+  interface IMaterialBNCCRepository{
+    create(data: CreateMaterialBNCCDTO): Promise<MaterialBNCCResponseDTO>;
+    delete(id: number): Promise<void>;
+    findById(id: number): Promise<MaterialBNCCResponseDTO | null>;
+    findAllByMaterial(materialId: number): Promise<MaterialBNCCResponseDTO[]>;
+    findAllByBNCC(bnccId: number): Promise<MaterialBNCCResponseDTO[]>;
+    deleteByMaterialAndBNCC(materialId: number, bnccId: number): Promise<void>;
+  }
+  interface ILogGeracaoIAService{
+    create(data: CreateLogGeracaoIADTO): Promise<LogGeracaoIADTO>;
+    findById(id: number): Promise<LogGeracaoIADTO | null>;
+    findAllByUnidade(unidadeId: number): Promise<LogGeracaoIADTO[]>;
+  }
+  interface ILogGeracaoIARepository{
+    createLog(data: CreateLogGeracaoIADTO): Promise<LogGeracaoIADTO>;
+    getLogById(id: number): Promise<LogGeracaoIADTO>;
+    getAllLogsByUnidade(unidadeId: number): Promise<LogGeracaoIADTO[]>;
+  }
+  interface IDisciplinaService{
+    createDisciplina(data: CreateDisciplinaDTO): Promise<DisciplinaDTO>;
+    getDisciplinaById(id: number): Promise<DisciplinaDTO>;
+    getAllDisciplinas(): Promise<DisciplinaDTO[]>;
+    updateDisciplina(id: number, data: UpdateDisciplinaDTO): Promise<DisciplinaDTO>;
+    deleteDisciplina(id: number): Promise<void>;
+  }
+  interface IDisciplinaRepository{
+    create(data: CreateDisciplinaDTO): Promise<DisciplinaDTO>;
+    findById(id: number): Promise<DisciplinaDTO | null>;
+    findAll(): Promise<DisciplinaDTO[]>;
+    update(id: number, data: UpdateDisciplinaDTO): Promise<DisciplinaDTO>;
+    delete(id: number): Promise<void>;
+  }
+  interface IBNCCService{
+    createBNCC(data: CreateBNCCDTO): Promise<BNCCDTO>;
+    updateBNCC(id: number, data: UpdateBNCCDTO): Promise<BNCCDTO>;
+    getBNCCById(id: number): Promise<BNCCDTO>;
+    getAllBNCC(stage?: Stage): Promise<BNCCDTO[]>;
+    deleteBNCC(id: number): Promise<void>;
+  }
+  interface IBNCCRepository{
+    create(data: CreateBNCCDTO): Promise<BNCCDTO>;
+    findById(id: number): Promise<BNCCDTO | null>;
+    findByCode(code: string): Promise<BNCCDTO | null>;
+    findAll(stage?: Stage): Promise<BNCCDTO[]>;
+    update(id: number, data: UpdateBNCCDTO): Promise<BNCCDTO>;
+    delete(id: number): Promise<void>;
+  }
+  interface IAtividadeService{
+    createAtividade(data: CreateAtividadeDTO): Promise<AtividadeDTO>;
+    getAtividadeById(id: number): Promise<AtividadeDTO>;
+    getAllAtividadesByUnidade(unidadeId: number): Promise<AtividadeDTO[]>;
+    updateAtividade(id: number, data: UpdateAtividadeDTO): Promise<AtividadeDTO>;
+    deleteAtividade(id: number): Promise<void>;
+  }
+  interface IAtividadeRepository{
+    create(data: CreateAtividadeDTO): Promise<AtividadeDTO>;
+    findById(id: number): Promise<AtividadeDTO | null>;
+    findAllByUnidade(unidadeId: number): Promise<AtividadeDTO[]>;
+    update(id: number, data: UpdateAtividadeDTO): Promise<AtividadeDTO>;
+    delete(id: number): Promise<void>;
+  }
+}
+}
+
+
+'========================
+'FRONTEND
+'========================
+package "UI" {
+  class Dashboard
+  class LoginPage
+  class MaterialsPage
+  class BNCCPage
+  class PlanoAulaPage
+  class AtividadesPage
+}
+
+
+package "Presentation"{
+
+'========================
+' CAMADA DE ROUTES
+'========================
+package "Routes" {
+
+  class UserRoutes
+  class UnidadeRoutes
+  class TagRoutes
+  class PlanoAulaRoutes
+  class MaterialRoutes
+  class MaterialBNCCRoutes
+  class LogGeracaoIARoutes
+  class DisciplinaRoutes
+  class BNCCRoutes
+  class AtividadeRoutes
+}
+
+'========================
+' CAMADA SERVER
+'========================
+package "Server" {
+  class Server {
+    +start()
+    +listen(port)
+  }
+}
+
+
+Dashboard --> Server
+MaterialsPage --> Server
+BNCCPage --> Server
+PlanoAulaPage --> Server
+AtividadesPage --> Server
+LoginPage --> Server
+
+
+' Routes usam Controllers
+UserRoutes --> UserController
+UnidadeRoutes --> UnidadeController
+TagRoutes --> TagController
+PlanoAulaRoutes --> PlanoAulaController
+MaterialRoutes --> MaterialController
+MaterialBNCCRoutes --> MaterialBNCCController
+LogGeracaoIARoutes --> LogGeracaoIAController
+DisciplinaRoutes --> DisciplinaController
+BNCCRoutes --> BNCCController
+AtividadeRoutes --> AtividadeController
+
+
+' Server usa Routes
+Server --> UserRoutes
+Server --> UnidadeRoutes
+Server --> TagRoutes
+Server --> PlanoAulaRoutes
+Server --> MaterialRoutes
+Server --> MaterialBNCCRoutes
+Server --> LogGeracaoIARoutes
+Server --> DisciplinaRoutes
+Server --> BNCCRoutes
+Server --> AtividadeRoutes
+
+
+note top of UI
+  UI:
+  - Representa a interface do usuário da aplicação
+  - Cada classe é uma página/tela
+  - Conecta com a API através das rotas correspondentes
+end note
+
+
+note top of Server
+  Server:
+  - Inicializa a aplicação
+  - Conecta Routes ao Express
+  - Ponto de entrada da API educacional
+end note
+
+}
+
+
+
+
+'========================
+' RELAÇÕES PRINCIPAIS
+'========================
+
+'DTOS
+UnidadeResponseDTO --|> UnidadeDTO
+MaterialResponseDTO --|> MaterialBNCCDTO
+MaterialBNCCResponseDTO --|> BNCCDTO
+
+
+' Services usam Repositórios
+UserService --> UserRepository : usa
+UnidadeService --> UnidadeRepository : usa
+TagService --> TagRepository : usa
+PlanoAulaService --> PlanoAulaRepository : usa
+MaterialService --> MaterialRepository : usa
+MaterialBNCCService --> MaterialBNCCRepository : usa
+LogGeracaoIAService --> LogGeracaoIARepository : usa
+DisciplinaService --> DisciplinaRepository : usa
+BNCCService --> BNCCRepository : usa
+AtividadeService --> AtividadeRepository : usa
+
+
+' Serviços implementam Interfaces
+UserService ..|> IUserService
+UnidadeService ..|> IUnidadeService
+TagService ..|> ITagService
+PlanoAulaService ..|> IPlanoAulaService
+MaterialService ..|> IMaterialService
+MaterialBNCCService ..|> IMaterialBNCCService
+LogGeracaoIAService ..|> ILogGeracaoIAService
+DisciplinaService ..|> IDisciplinaService
+BNCCService ..|> IBNCCService
+AtividadeService ..|> IAtividadeService
+
+
+' Repositórios implementam Interfaces
+UserRepository ..|> IUserRepository
+UnidadeRepository ..|> IUnidadeRepository
+TagRepository ..|> ITagRepository
+PlanoAulaRepository ..|> IPlanoAulaRepository
+MaterialRepository ..|> IMaterialRepository
+MaterialBNCCRepository ..|> IMaterialBNCCRepository
+LogGeracaoIARepository ..|> ILogGeracaoIARepository
+DisciplinaRepository ..|> IDisciplinaRepository
+BNCCRepository ..|> IBNCCRepository
+AtividadeRepository ..|> IAtividadeRepository
+
+
+' Controllers usam Services
+UserController --> UserService
+UnidadeController --> UnidadeService
+TagController --> TagService
+PlanoAulaController --> PlanoAulaService
+MaterialController --> MaterialService
+MaterialBNCCController --> MaterialBNCCService
+LogGeracaoIAController --> LogGeracaoIAService
+DisciplinaController --> DisciplinaService
+BNCCController --> BNCCService
+AtividadeController --> AtividadeService
+
+
+
+' Repositórios usam Banco de dados (Prisma)
+UserRepository --> PrismaClient
+UnidadeRepository --> PrismaClient
+TagRepository --> PrismaClient
+PlanoAulaRepository --> PrismaClient
+MaterialRepository --> PrismaClient
+MaterialBNCCRepository --> PrismaClient
+LogGeracaoIARepository --> PrismaClient
+DisciplinaRepository --> PrismaClient
+BNCCRepository --> PrismaClient
+AtividadeRepository --> PrismaClient
+
+
+'========================
+' NOTAS EXPLICATIVAS
+'========================
+
+
+
+note top of Services
+  Camada de Serviços:
+  - Contém a lógica de negócio
+  - Chama os repositórios para manipular dados
+end note
+
+
+note top of Repositories
+  Repositórios:
+  - Comunicação direta com o banco (Prisma)
+  - Map DTOs e Entities
+end note
+
+
+note top of Controllers
+  Controllers:
+  - Recebem requests HTTP
+  - Chamam os Services
+  - Retornam respostas para o cliente
+end note
+
+
+note top of Routes
+  Routes:
+  - Definem endpoints da API
+  - Ligam Controllers ao Express
+end note
+
+
+note top of "Models / DTOs"
+DTOs e Models:
+- Estrutura de dados
+- Separação entre input/output e entities
+end note
+
+
+note top of Interfaces
+Interfaces:
+- Contratos que Services e Repositories implementam
+- Facilita testabilidade e injeção de dependência
+end note
+
+
+note top
+API Educacional:
+- Plataforma para professores gerarem materiais didáticos
+- Vinculação com BNCC e disciplinas
+- Gestão de usuários, unidades, planos de aula, tags, atividades e logs de IA
+end note
+
+
+@enduml
