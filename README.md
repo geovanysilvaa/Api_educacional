@@ -37,26 +37,41 @@ Fornece endpoints para CRUD de entidades educacionais e geração automática de
 
 ---
 
-## 📂 Estrutura da API
+📂 Estrutura da API
 
 src/
 ├── core/
-│ ├── controllers/ # Controllers HTTP
-│ │ └── IAcontroller/
-│ ├── service/ # Regras de negócio
-│ │ ├── geracao/
-│ │ └── ia/
-│ ├── repository/ # Acesso ao banco (Prisma)
-│ └── models/ # Modelos e DTOs
+
+│   ├── controllers/       # Controllers HTTP (rotas e endpoints)
+
+│   │   └── IAController/  # Controller específico de IA
+
+│   ├── services/          # Regras de negócio
+
+│   │   ├── geracao/       # Serviços de geração
+
+│   │   └── ia/            # Serviços de IA
+
+│   ├── repository/        # Acesso ao banco (Prisma)
+
+│   └── models/            # Modelos e DTOs
+
 │
 ├── presentation/
-│ └── http/
-│ ├── routes/ # Rotas da API
-│ ├── middlewares/ # Middlewares globais
-│ └── server.ts # Inicialização do servidor
+
+│   └── http/
+
+│       ├── routes/        # Rotas da 
+
+│       ├── middlewares/   # Middlewares globais
+
+│       └── server.ts      # Inicialização do servidor
+
 │
 ├── prisma/
-│ └── schema.prisma # Schema do banco
+
+│   └── schema.prisma       # Schema do banco
+
 
 ---
 
@@ -160,8 +175,9 @@ LogGeracaoIA
 
 Crie um arquivo .env na raiz do projeto:
 
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_banco"
-OPENROUTER_API_KEY="sk-or-xxxxxxxxxxxxxxxx"
+- DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_banco"
+
+- OPENROUTER_API_KEY="sk-or-xxxxxxxxxxxxxxxx"
 PORT=3000
 
 ---
