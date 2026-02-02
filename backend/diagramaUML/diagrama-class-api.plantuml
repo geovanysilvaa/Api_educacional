@@ -311,6 +311,14 @@ package "Controllers"{
   class DisciplinaController
   class BNCCController
   class AtividadeController
+
+
+  package "IAcontroller"{
+    class GerarAtividadeController
+    class GerarPlanoAulaController
+    class GerarSlidesController
+    class GerarSugestaoController
+  }
 }
 
 
@@ -330,6 +338,18 @@ package "Services" {
   class DisciplinaService
   class BNCCService
   class AtividadeService
+
+  package "IA"{
+    class IAClient
+    class ModelasIA
+    class PromptFactory
+  }
+  package "Gerção"{
+    class GerarAtividadeService
+    class GerarPlanoAulaService
+    class GerarSlideService
+    class GerarSugestaoAtividadeService
+  }
 }
 
 '========================
@@ -518,6 +538,7 @@ package "Routes" {
   class DisciplinaRoutes
   class BNCCRoutes
   class AtividadeRoutes
+  class Geração
 }
 
 '========================
@@ -550,7 +571,10 @@ LogGeracaoIARoutes --> LogGeracaoIAController
 DisciplinaRoutes --> DisciplinaController
 BNCCRoutes --> BNCCController
 AtividadeRoutes --> AtividadeController
-
+Geração --> GerarAtividadeController
+Geração --> GerarPlanoAulaController
+Geração --> GerarSlidesController
+Geração --> GerarSugestaoController
 
 ' Server usa Routes
 Server --> UserRoutes
@@ -563,6 +587,7 @@ Server --> LogGeracaoIARoutes
 Server --> DisciplinaRoutes
 Server --> BNCCRoutes
 Server --> AtividadeRoutes
+Server --> Geração
 
 
 note top of UI
@@ -606,7 +631,25 @@ LogGeracaoIAService --> LogGeracaoIARepository : usa
 DisciplinaService --> DisciplinaRepository : usa
 BNCCService --> BNCCRepository : usa
 AtividadeService --> AtividadeRepository : usa
+GerarAtividadeService --> AtividadeRepository : usa
+GerarPlanoAulaService --> PlanoAulaRepository : usa
+GerarSlideService --> LogGeracaoIARepository : usa
+GerarSugestaoAtividadeService --> LogGeracaoIARepository : usa
 
+''
+GerarAtividadeService --> ModelasIA : usa
+GerarPlanoAulaService --> ModelasIA : usa
+GerarSugestaoAtividadeService --> ModelasIA : usa
+GerarSlideService --> ModelasIA : usa
+
+''
+GerarAtividadeService --> IAClient : usa
+GerarPlanoAulaService --> IAClient : usa
+GerarSugestaoAtividadeService --> IAClient : usa
+GerarSlideService --> IAClient : usa
+
+''
+GerarAtividadeService --> PromptFactory : usa
 
 ' Serviços implementam Interfaces
 UserService ..|> IUserService
@@ -645,6 +688,11 @@ LogGeracaoIAController --> LogGeracaoIAService
 DisciplinaController --> DisciplinaService
 BNCCController --> BNCCService
 AtividadeController --> AtividadeService
+
+GerarAtividadeController --> GerarAtividadeService
+GerarPlanoAulaController --> GerarPlanoAulaService
+GerarSlidesController --> GerarSlideService
+GerarSugestaoController --> GerarSugestaoAtividadeService
 
 
 
