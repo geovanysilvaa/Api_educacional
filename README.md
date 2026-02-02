@@ -3,6 +3,7 @@
 API REST responsável pelo gerenciamento educacional e pela geração de conteúdo com IA.  
 Fornece endpoints para CRUD de entidades educacionais e geração automática de conteúdos pedagógicos utilizando a OpenRouter API.
 
+obs: para um melhor visualização faça o download do diagrama.
 ---
 
 ## 📌 Funcionalidades da API
